@@ -24,9 +24,10 @@ class IVocabularyUtility(Interface):
 
 
 class ITermRemovedEvent(IObjectEvent):
-    vocab_id = Attribute('')
-    term_id = Attribute('')
+    vocab_id = Attribute(
+        'The id of the vocabulary that the terms is being removed from')
+    term_id = Attribute('The id of the term being removed')
 
 
 class IVocabularyRemovedEvent(IObjectEvent):
-    vocab_id = Attribute('')
+    vocab_id = Attribute('The id of the vocabulary being removed')
