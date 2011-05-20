@@ -1,3 +1,4 @@
+
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
@@ -8,11 +9,10 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="collective.vocabularymanager"
+      title="Vocabulary Manager"
       directory="profiles/default"
       description="Installs the collective.vocabularymanager package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
   
 </configure>
