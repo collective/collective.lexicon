@@ -1,5 +1,6 @@
 from collective.vocabularymanager.interfaces import IVocabularyUtility
-from collective.vocabularymanager.events import TermRemovedEvent, VocabularyRemovedEvent
+from collective.vocabularymanager.events import TermRemovedEvent
+from collective.vocabularymanager.events import VocabularyRemovedEvent
 from zope.interface import implements
 from zope.event import notify
 
