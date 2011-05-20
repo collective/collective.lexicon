@@ -1,7 +1,8 @@
 from zope.interface import Interface, Attribute
 
+
 class IVocabularyUtility(Interface):
-    
+
     def add_term(self, vocab_id, term):
         pass
 
@@ -24,6 +25,7 @@ class IVocabularyUtility(Interface):
 class ITermRemovedEvent(Interface):
     vocab_id = Attribute()
     term_id = Attribute()
+
 
 class IVocabularyRemovedEvent(Interface):
     vocab_id = Attribute()
