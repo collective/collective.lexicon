@@ -21,4 +21,9 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <utility
+      component="collective.vocabularymanager.utility.VocabularyUtility"
+      provides="collective.vocabularymanager.interfaces.IVocabularyUtility"
+      />
+
 </configure>
