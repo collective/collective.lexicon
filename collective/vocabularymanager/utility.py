@@ -4,6 +4,7 @@ from collective.vocabularymanager.events import VocabularyRemovedEvent
 from zope.interface import implements
 from zope.event import notify
 
+
 class VocabularyUtility(object):
     implements(IVocabularyUtility)
 
@@ -11,7 +12,7 @@ class VocabularyUtility(object):
         pass
 
     def remove_term(self, vocab_id, term_id):
-        notify(TermRemovedEvent(vocab_id, term_id))
+        notify(TermRemovedEvent(self, vocab_id, term_id))
 
     def get_vocab(self, vocab_id):
         pass
@@ -20,7 +21,7 @@ class VocabularyUtility(object):
         pass
 
     def remove_vocab(self, id):
-        notify(VocabularyRemovedEvent(id))
+        notify(VocabularyRemovedEvent(self, id))
 
     def order(self, vocab_id, order):
         pass

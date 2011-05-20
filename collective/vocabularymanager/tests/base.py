@@ -32,7 +32,7 @@ class VocabularyManager(PloneSandboxLayer):
         login(portal, 'admin')
 
 VM_FIXTURE = VocabularyManager()
-VM_FUNCTIONAL_TESTING = FunctionalTesting(bases=(PACOLLECTION_FIXTURE,),
+VM_FUNCTIONAL_TESTING = FunctionalTesting(bases=(VM_FIXTURE,),
                                               name="VocabularyManager:Functional")
 class VMTestCase(unittest.TestCase):
     layer = VM_FUNCTIONAL_TESTING

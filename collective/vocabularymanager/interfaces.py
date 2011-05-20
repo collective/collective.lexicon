@@ -1,4 +1,5 @@
 from zope.interface import Interface, Attribute
+from zope.component.interfaces import IObjectEvent
 
 
 class IVocabularyUtility(Interface):
@@ -22,10 +23,10 @@ class IVocabularyUtility(Interface):
         pass
 
 
-class ITermRemovedEvent(Interface):
-    vocab_id = Attribute()
-    term_id = Attribute()
+class ITermRemovedEvent(IObjectEvent):
+    vocab_id = Attribute('')
+    term_id = Attribute('')
 
 
-class IVocabularyRemovedEvent(Interface):
-    vocab_id = Attribute()
+class IVocabularyRemovedEvent(IObjectEvent):
+    vocab_id = Attribute('')

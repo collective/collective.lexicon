@@ -1,0 +1,37 @@
+import unittest2 as unittest
+from plone.testing.z2 import Browser
+from plone.app.testing import login
+from plone.app.testing import logout
+from transaction import commit
+from zope.component import getUtility
+from zope.component import getMultiAdapter
+from zope.interface import Interface
+import zope.event
+from zope.component import getGlobalSiteManager
+from collective.vocabularymanager.interfaces import IVocabularyRemovedEvent
+from collective.vocabularymanager.interfaces import IVocabularyUtility
+from collective.vocabularymanager.utility import VocabularyUtility
+from collective.vocabularymanager.tests.base import VMTestCase
+
+
+class TestVocabularyManager(VMTestCase):
+    
+    def test_event_is_fired_when_vocabulary_deleted(self):
+        remove_id = False
+        def event_handler(object, event):
+            remove_id = event.vocab_id
+        gsm = getGlobalSiteManager()
+        gsm.registerHandler(event_handler, (IVocabularyUtility, IVocabularyRemovedEvent))
+        util = VocabularyUtility()
+        util.remove_vocab('foo')
+
+        self.failUnless(remove_id == 'foo')
+        
+
+def test_suite():
+    """This sets up a test suite that actually runs the tests in the class
+    above
+    """
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(TestVocabularyManager))
+    return suite
