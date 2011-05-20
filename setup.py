@@ -16,7 +16,7 @@ setup(name='collective.vocabularymanager',
         ],
       keywords='',
       author='Andy Leeb, Clayton Parker, Nathan VanGheem, John Olson',
-      author_email='ableeb@andyleeb.com'
+      author_email='ableeb@andyleeb.com',
       url='http://svn.plone.org/svn/collective/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
