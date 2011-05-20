@@ -12,7 +12,7 @@ from collective.vocabularymanager.interfaces import IVocabularyRemovedEvent
 from collective.vocabularymanager.interfaces import IVocabularyUtility
 from collective.vocabularymanager.utility import VocabularyUtility
 from collective.vocabularymanager.tests.base import VMTestCase
-
+from zope.component.interface import provideInterface
 
 class TestVocabularyManager(VMTestCase):
     
@@ -21,12 +21,10 @@ class TestVocabularyManager(VMTestCase):
         def event_handler(object, event):
             remove_id = event.vocab_id
         gsm = getGlobalSiteManager()
-        gsm.registerHandler(event_handler, (IVocabularyUtility, IVocabularyRemovedEvent))
+        gsm.registerHandler(event_handler, (IVocabularyUtility, IVocabularyRemovedEvent), u'')
         util = VocabularyUtility()
         util.remove_vocab('foo')
-
         self.failUnless(remove_id == 'foo')
-        
 
 def test_suite():
     """This sets up a test suite that actually runs the tests in the class

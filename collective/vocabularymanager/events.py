@@ -7,14 +7,13 @@ class TermRemovedEvent(ObjectEvent):
     implements(ITermRemovedEvent)
 
     def __init__(self, object, vocab_id, term_id):
-        self.object = object
-        self.vocab_id = vocab_id
+        super(TermRemovedEvent, self).__init__(object)
         self.term_id = term_id
 
 
 class VocabularyRemovedEvent(ObjectEvent):
     implements(IVocabularyRemovedEvent)
 
-    def __init__(self, utility, vocab_id):
-        self.object = object
+    def __init__(self, object, vocab_id):
+        super(VocabularyRemovedEvent, self).__init__(object)
         self.vocab_id = vocab_id
