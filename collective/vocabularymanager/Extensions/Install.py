@@ -1,11 +1,24 @@
+from StringIO import StringIO
 from Products.CMFCore.utils import getToolByName
-from zope.container.ordered import OrderedContainer
 
-def install(self, reinstall=False):
-    portal = getToolByName(self, 'portal_url').getPortalObject()
-    if not hasattr(portal, '_vocabularies_'):
-        portal._vocabularies_ = OrderedContainer()
 
-def uninstall(self, reinstall=False):
+def runProfile(portal, profileName):
+    setupTool = getToolByName(portal, 'portal_setup')
+    setupTool.runAllImportStepsFromProfile(profileName)
+
+
+def install(portal):
+    """Run the GS profile to install this package"""
+    out = StringIO()
+    runProfile(portal, 'profile-collective.vocabularymanager:default')
+    print >> out, "Installed collective.vocabularymanager"
+    return out.getvalue()
+
+
+def uninstall(portal, reinstall=False):
+    """Run the GS profile to install this package"""
+    out = StringIO()
     if not reinstall:
-        ps = getToolByName(self, 'portal_setup')
+        runProfile(portal, 'profile-collective.vocabularymanager:uninstall')
+        print >> out, "Uninstalled collective.vocabularymanager"
+    return out.getvalue()

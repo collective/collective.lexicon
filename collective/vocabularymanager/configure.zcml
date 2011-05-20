@@ -13,4 +13,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="Vocabulary Manager (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the collective.vocabularymanager package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 </configure>
