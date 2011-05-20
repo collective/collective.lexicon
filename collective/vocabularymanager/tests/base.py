@@ -1,57 +1,38 @@
-import unittest
-
-#from zope.testing import doctestunit
-#from zope.component import testing
-from Testing import ZopeTestCase as ztc
-
-from Products.Five import zcml
-from Products.Five import fiveconfigure
-from Products.PloneTestCase import PloneTestCase as ptc
-from Products.PloneTestCase.layer import PloneSite
-ptc.setupPloneSite()
-
-import collective.vocabularymanager
+import unittest2 as unittest
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import applyProfile
+from plone.app.testing import login
+from zope.configuration import xmlconfig
+from plone.app.testing.layers import FunctionalTesting
+from plone.testing import z2
 
 
-class TestCase(ptc.PloneTestCase):
+class VocabularyManager(PloneSandboxLayer):
+    defaultBases = (PLONE_FIXTURE,)
 
-    class layer(PloneSite):
+    def setUpZope(self, app, configurationContext):
+        # load ZCML
+        import collective.vocabularymanager
+        xmlconfig.file('configure.zcml', collective.vocabularymanager,
+                       context=configurationContext)
+        z2.installProduct(app, 'collective.vocabularymanager')
 
-        @classmethod
-        def setUp(cls):
-            fiveconfigure.debug_mode = True
-            zcml.load_config('configure.zcml',
-                             collective.vocabularymanager)
-            fiveconfigure.debug_mode = False
+    def setUpPloneSite(self, portal):
+        # install into the Plone site
+        applyProfile(portal, 'collective.vocabularymanager:default')
 
-        @classmethod
-        def tearDown(cls):
-            pass
+        # create admin user
+        # z2.setRoles(portal, TEST_USER_NAME, ['Manager']) does not work
+        # setRoles(portal, TEST_USER_NAME, ['Manager']) is not working either
+        portal.acl_users.userFolderAddUser('admin',
+                                           'secret',
+                                           ['Manager'],
+                                           [])
+        login(portal, 'admin')
 
-
-def test_suite():
-    return unittest.TestSuite([
-
-        # Unit tests
-        #doctestunit.DocFileSuite(
-        #    'README.txt', package='collective.vocabularymanager',
-        #    setUp=testing.setUp, tearDown=testing.tearDown),
-
-        #doctestunit.DocTestSuite(
-        #    module='collective.vocabularymanager.mymodule',
-        #    setUp=testing.setUp, tearDown=testing.tearDown),
-
-
-        # Integration tests that use PloneTestCase
-        #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='collective.vocabularymanager',
-        #    test_class=TestCase),
-
-        #ztc.FunctionalDocFileSuite(
-        #    'browser.txt', package='collective.vocabularymanager',
-        #    test_class=TestCase),
-
-        ])
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
+VM_FIXTURE = VocabularyManager()
+VM_FUNCTIONAL_TESTING = FunctionalTesting(bases=(PACOLLECTION_FIXTURE,),
+                                              name="VocabularyManager:Functional")
+class VMTestCase(unittest.TestCase):
+    layer = VM_FUNCTIONAL_TESTING

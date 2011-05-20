@@ -26,8 +26,10 @@ setup(name='collective.vocabularymanager',
       install_requires=[
           'setuptools',
       ],
+      extras_require={'tests': ['plone.app.testing']},
       entry_points="""
       # -*- Entry points: -*-
+
 
       [z3c.autoinclude.plugin]
       target = plone
