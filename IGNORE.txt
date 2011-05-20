@@ -1,0 +1,9 @@
+# Set with:
+#   svn propset svn:ignore -F IGNORE.txt .
+#
+# ignoring these files/dirs in the buildout
+.installed.cfg
+var
+develop-eggs
+bin
+parts
