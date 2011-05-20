@@ -9,6 +9,7 @@ class TermRemovedEvent(ObjectEvent):
     def __init__(self, object, vocab_id, term_id):
         super(TermRemovedEvent, self).__init__(object)
         self.term_id = term_id
+        self.vocab_id = vocab_id
 
 
 class VocabularyRemovedEvent(ObjectEvent):
