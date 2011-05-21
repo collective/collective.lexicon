@@ -13,6 +13,9 @@ class IVocabularyUtility(Interface):
     def get_vocab(self, vocab_id):
         pass
 
+    def get_vocab_items(self, vocab_id):
+        pass
+
     def add_vocab(self, id, title):
         pass
 
