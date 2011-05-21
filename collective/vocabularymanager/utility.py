@@ -19,7 +19,7 @@ class VocabularyUtility(object):
 
     def add_term(self, vocab_id, term):
         vocab = self.get_vocab(vocab_id)
-        term_key = term #TODO: generate the key
+        term_key = term  # TODO: generate the key
         vocab[term_key] = term
 
     def remove_term(self, vocab_id, term_id):
@@ -29,7 +29,7 @@ class VocabularyUtility(object):
         if vocab_id in self.storage:
             return self.storage.get(vocab_id)
         raise AttributeError('No vocabulary with %s id found' % vocab_id)
-    
+
     def get_vocab_items(self, vocab_id):
         """ return a list of tuples (k,v)
         """
@@ -42,9 +42,8 @@ class VocabularyUtility(object):
         if id in self.storage:
             return
         self.storage[id] = OrderedContainer()
-        setattr(self.storage[id],'_metadata',PersistentDict())
-        self.storage[id]._metadata.setdefault('title',title)
-        
+        setattr(self.storage[id], '_metadata', PersistentDict())
+        self.storage[id]._metadata.setdefault('title', title)
 
     def remove_vocab(self, id):
         notify(VocabularyRemovedEvent(self, id))

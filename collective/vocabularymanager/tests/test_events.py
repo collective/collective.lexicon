@@ -52,4 +52,3 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestEvents))
     return suite
-

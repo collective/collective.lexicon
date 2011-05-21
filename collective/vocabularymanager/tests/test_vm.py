@@ -4,6 +4,7 @@ from collective.vocabularymanager.interfaces import IVocabularyUtility
 from collective.vocabularymanager.tests.base import VMTestCase
 from zope.container.ordered import OrderedContainer
 
+
 class TestVocabularyManager(VMTestCase):
 
     def test_storage_creation(self):
@@ -15,7 +16,7 @@ class TestVocabularyManager(VMTestCase):
     def test_add_vocab(self):
         vm = getUtility(IVocabularyUtility)
         vocab_tool = vm()
-        vocab_tool.add_vocab('vocab1','vocabulary1')
+        vocab_tool.add_vocab('vocab1', 'vocabulary1')
         test_vocab = vocab_tool.storage.get('vocab1')
         self.failUnless(test_vocab._metadata['title'] == 'vocabulary1')
         self.failUnless(isinstance(test_vocab, OrderedContainer))
@@ -23,18 +24,18 @@ class TestVocabularyManager(VMTestCase):
     def test_get_empty_vocab(self):
         vm = getUtility(IVocabularyUtility)
         vocab_tool = vm()
-        vocab_tool.add_vocab('vocab1','vocabulary1')
+        vocab_tool.add_vocab('vocab1', 'vocabulary1')
         test_vocab = vocab_tool.get_vocab_items('vocab1')
-        self.assertEqual(test_vocab,list())
+        self.assertEqual(test_vocab, [])
 
     def test_get_vocab(self):
         vm = getUtility(IVocabularyUtility)
         vocab_tool = vm()
-        vocab_tool.add_vocab('vocab1','vocabulary1')
-        #TODO: test unicode values!
-        vocab_tool.add_term('vocab1','term_value')
+        vocab_tool.add_vocab('vocab1', 'vocabulary1')
+        # TODO: test unicode values!
+        vocab_tool.add_term('vocab1', 'term_value')
         test_vocab = vocab_tool.get_vocab('vocab1')
-        self.assertEqual(len(test_vocab),1)
+        self.assertEqual(len(test_vocab), 1)
 
 
 def test_suite():
