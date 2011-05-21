@@ -24,7 +24,7 @@ class TestVocabularyManager(VMTestCase):
         vm = getUtility(IVocabularyUtility)
         vocab_tool = vm()
         vocab_tool.add_vocab('vocab1','vocabulary1')
-        test_vocab = vocab_tool.get_vocab('vocab1')
+        test_vocab = vocab_tool.get_vocab_items('vocab1')
         self.assertEqual(test_vocab,list())
 
     def test_get_vocab(self):
