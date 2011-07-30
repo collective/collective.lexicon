@@ -2,8 +2,8 @@ import unittest2 as unittest
 from zope.component import getGlobalSiteManager
 from collective.vocabularymanager.interfaces import IVocabularyRemovedEvent
 from collective.vocabularymanager.interfaces import ITermRemovedEvent
-from collective.vocabularymanager.interfaces import IVocabularyUtility
-from collective.vocabularymanager.utility import VocabularyUtility
+from collective.vocabularymanager.interfaces import IVocabularyManager
+from collective.vocabularymanager.utility import VocabularyManager
 from collective.vocabularymanager.tests.base import VMTestCase
 
 
@@ -25,9 +25,9 @@ class TestEvents(VMTestCase):
         gsm = getGlobalSiteManager()
         gsm.registerHandler(
             event_handler,
-            (IVocabularyUtility, IVocabularyRemovedEvent),
+            (IVocabularyManager, IVocabularyRemovedEvent),
             u'')
-        util = VocabularyUtility()
+        util = VocabularyManager()
         util.remove_vocab('vocab_id')
         self.failUnless(event_handler.event.vocab_id == 'vocab_id')
 
@@ -36,9 +36,9 @@ class TestEvents(VMTestCase):
         gsm = getGlobalSiteManager()
         gsm.registerHandler(
             event_handler,
-            (IVocabularyUtility, ITermRemovedEvent),
+            (IVocabularyManager, ITermRemovedEvent),
             u'')
-        util = VocabularyUtility()
+        util = VocabularyManager()
         util.remove_term('vocab_id', 'term_id')
         self.failUnless(
             event_handler.event.vocab_id == 'vocab_id',

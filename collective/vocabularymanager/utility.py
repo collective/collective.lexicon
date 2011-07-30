@@ -1,4 +1,4 @@
-from collective.vocabularymanager.interfaces import IVocabularyUtility
+from collective.vocabularymanager.interfaces import IVocabularyManager
 from collective.vocabularymanager.events import TermRemovedEvent
 from collective.vocabularymanager.events import VocabularyRemovedEvent
 from zope.interface import implements
@@ -8,8 +8,8 @@ from zope.container.ordered import OrderedContainer
 from persistent.dict import PersistentDict
 
 
-class VocabularyUtility(object):
-    implements(IVocabularyUtility)
+class VocabularyManager(object):
+    implements(IVocabularyManager)
 
     def __init__(self):
         portal = getSite()

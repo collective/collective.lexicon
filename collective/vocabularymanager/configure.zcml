@@ -22,8 +22,8 @@
       />
 
   <utility
-      component="collective.vocabularymanager.utility.VocabularyUtility"
-      provides="collective.vocabularymanager.interfaces.IVocabularyUtility"
+      component="collective.vocabularymanager.utility.VocabularyManager"
+      provides="collective.vocabularymanager.interfaces.IVocabularyManager"
       />
 
 </configure>

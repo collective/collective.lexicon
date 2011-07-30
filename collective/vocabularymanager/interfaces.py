@@ -2,7 +2,7 @@ from zope.interface import Interface, Attribute
 from zope.component.interfaces import IObjectEvent
 
 
-class IVocabularyUtility(Interface):
+class IVocabularyManager(Interface):
 
     def add_term(self, vocab_id, term):
         pass
