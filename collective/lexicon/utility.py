@@ -7,15 +7,17 @@ from zope.app.component.hooks import getSite
 from zope.container.ordered import OrderedContainer
 from persistent.dict import PersistentDict
 
+VOCAB_STORAGE_KEY = '_vocabularies_'
+
 
 class VocabularyManager(object):
     implements(IVocabularyManager)
 
     def __init__(self):
         portal = getSite()
-        if not hasattr(portal, '_vocabularies_'):
-            setattr(portal, '_vocabularies_', OrderedContainer())
-        self.storage = portal._vocabularies_
+        if not hasattr(portal, VOCAB_STORAGE_KEY):
+            setattr(portal, VOCAB_STORAGE_KEY, OrderedContainer())
+        self.storage = getattr(portal, VOCAB_STORAGE_KEY, None)
 
     def add_term(self, vocab_id, term):
         vocab = self.get_vocab(vocab_id)
