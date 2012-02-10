@@ -1,6 +1,6 @@
 from zope.interface import implements
-from collective.vocabularymanager.interfaces import ITermRemovedEvent
-from collective.vocabularymanager.interfaces import IVocabularyRemovedEvent
+from collective.lexicon.interfaces import ITermRemovedEvent
+from collective.lexicon.interfaces import IVocabularyRemovedEvent
 from zope.component.interfaces import ObjectEvent
 
 
