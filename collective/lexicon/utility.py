@@ -19,6 +19,11 @@ class VocabularyManager(object):
             setattr(portal, VOCAB_STORAGE_KEY, OrderedContainer())
         self.storage = getattr(portal, VOCAB_STORAGE_KEY, None)
 
+    def getId(self):
+        """XXX: Making GenericSetup happy
+        """
+        return "lexicon"
+
     def add_term(self, vocab_id, term):
         vocab = self.get_vocab(vocab_id)
         term_key = term  # TODO: generate the key

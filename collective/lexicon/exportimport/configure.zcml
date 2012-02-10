@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="unicaglobal.policy">
+
+  <adapter factory=".vocabulary.VocabularyXMLAdapter"/>
+
+  <genericsetup:exportStep
+      name="lexicon.vocabulary.export"
+      title="Lexicon Vocabulary Export"
+      description="Export vocabularies from the Lexicon tool"
+      handler=".vocabulary.export_vocabularies"
+      />
+
+  <genericsetup:importStep
+      name="lexicon.vocabulary.import"
+      title="Lexicon Vocabulary Import"
+      description="Import vocabularies from the Lexicon tool"
+      handler=".vocabulary.import_vocabularies"
+      />
+
+</configure>

@@ -5,6 +5,8 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.lexicon">
 
+  <include package=".exportimport"/>
+
   <genericsetup:registerProfile
       name="default"
       title="Lexicon (install)"
