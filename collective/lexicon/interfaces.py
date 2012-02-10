@@ -4,25 +4,25 @@ from zope.component.interfaces import IObjectEvent
 
 class IVocabularyManager(Interface):
 
-    def add_term(self, vocab_id, term):
+    def add_term(vocab_id, term):
         pass
 
-    def remove_term(self, vocab_id, term_id):
+    def remove_term(vocab_id, term_id):
         pass
 
-    def get_vocab(self, vocab_id):
+    def get_vocab(vocab_id):
         pass
 
-    def get_vocab_items(self, vocab_id):
+    def get_vocab_items(vocab_id):
         pass
 
-    def add_vocab(self, id, title):
+    def add_vocab(id, title):
         pass
 
-    def remove_vocab(self, id):
+    def remove_vocab(id):
         pass
 
-    def order(self, vocab_id, order):
+    def order(vocab_id, order):
         pass
 
 
