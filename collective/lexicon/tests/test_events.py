@@ -1,10 +1,10 @@
 import unittest2 as unittest
 from zope.component import getGlobalSiteManager
-from collective.vocabularymanager.interfaces import IVocabularyRemovedEvent
-from collective.vocabularymanager.interfaces import ITermRemovedEvent
-from collective.vocabularymanager.interfaces import IVocabularyManager
-from collective.vocabularymanager.utility import VocabularyManager
-from collective.vocabularymanager.tests.base import VMTestCase
+from collective.lexicon.interfaces import IVocabularyRemovedEvent
+from collective.lexicon.interfaces import ITermRemovedEvent
+from collective.lexicon.interfaces import IVocabularyManager
+from collective.lexicon.utility import VocabularyManager
+from collective.lexicon.tests.base import VMTestCase
 
 
 class MockVocabEventHandler(object):

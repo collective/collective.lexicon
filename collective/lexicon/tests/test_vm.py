@@ -1,7 +1,7 @@
 import unittest2 as unittest
 from zope.component import getUtility
-from collective.vocabularymanager.interfaces import IVocabularyManager
-from collective.vocabularymanager.tests.base import VMTestCase
+from collective.lexicon.interfaces import IVocabularyManager
+from collective.lexicon.tests.base import VMTestCase
 from zope.container.ordered import OrderedContainer
 
 

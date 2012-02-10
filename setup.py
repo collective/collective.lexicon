@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '1.0'
 
 setup(
-    name='collective.vocabularymanager',
+    name='collective.lexicon',
     version=version,
     description="A better way to manage vocabulary",
     long_description=open("README.txt").read() + "\n" +

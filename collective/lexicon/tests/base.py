@@ -13,14 +13,14 @@ class VocabularyManager(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # load ZCML
-        import collective.vocabularymanager
-        xmlconfig.file('configure.zcml', collective.vocabularymanager,
+        import collective.lexicon
+        xmlconfig.file('configure.zcml', collective.lexicon,
                        context=configurationContext)
-        z2.installProduct(app, 'collective.vocabularymanager')
+        z2.installProduct(app, 'collective.lexicon')
 
     def setUpPloneSite(self, portal):
         # install into the Plone site
-        applyProfile(portal, 'collective.vocabularymanager:default')
+        applyProfile(portal, 'collective.lexicon:default')
 
         # create admin user
         # z2.setRoles(portal, TEST_USER_NAME, ['Manager']) does not work
